@@ -9,6 +9,10 @@
 /dist
 /tags
 *.mo
+app/tmp/*
+lib/*
+app/test/*
+
 
 # IDE and editor specific files #
 #################################

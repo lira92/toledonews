@@ -44,6 +44,7 @@ class AppController extends Controller {
 	function beforeRender(){
         $MenuSite = $this->Menu->find("threaded");
         $this->set('MenuSite', $MenuSite);
+        $this->set('title_for_layout', 'Rede news');
 	}
     
 	private function userAuth(){

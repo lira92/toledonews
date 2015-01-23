@@ -20,7 +20,7 @@ class Menu extends AppModel {
      * @var string
      */
     public $displayField = 'titulo';
-    public $actsAs = array('Tree');
+    public $actsAs = array('Tree', 'Containable');
     //The Associations below have been created with all possible keys, those that are not needed can be removed
     /**
      * belongsTo associations
@@ -32,49 +32,28 @@ class Menu extends AppModel {
             'foreignKey' => 'tipo_id',
             'conditions' => '',
             'fields' => '',
-            'order' => ''));
+            'order' => '')
+    );
     /**
      * hasMany associations
      *
      * @var array
      */
     public $hasMany = array(
-        'Comentario' => array(
-            'className' => 'Comentario',
-            'foreignKey' => 'menu_id',
-            'dependent' => false,
-            'conditions' => '',
-            'fields' => '',
-            'order' => '',
-            'limit' => '',
-            'offset' => '',
-            'exclusive' => '',
-            'finderQuery' => '',
-            'counterQuery' => ''),
-        'Contagen' => array(
-            'className' => 'Contagen',
-            'foreignKey' => 'menu_id',
-            'dependent' => false,
-            'conditions' => '',
-            'fields' => '',
-            'order' => '',
-            'limit' => '',
-            'offset' => '',
-            'exclusive' => '',
-            'finderQuery' => '',
-            'counterQuery' => ''),
-        'Ensaio' => array(
-            'className' => 'Ensaio',
-            'foreignKey' => 'menu_id',
-            'dependent' => false,
-            'conditions' => '',
-            'fields' => '',
-            'order' => '',
-            'limit' => '',
-            'offset' => '',
-            'exclusive' => '',
-            'finderQuery' => '',
-            'counterQuery' => ''),
+        
+		'ChildMenu' => array(
+			'className' => 'Menu',
+			'foreignKey' => 'parent_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
         'Pagina' => array(
             'className' => 'Pagina',
             'foreignKey' => 'menu_id',
@@ -87,16 +66,5 @@ class Menu extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''),
-        'Patrocinio' => array(
-            'className' => 'Patrocinio',
-            'foreignKey' => 'menu_id',
-            'dependent' => false,
-            'conditions' => '',
-            'fields' => '',
-            'order' => '',
-            'limit' => '',
-            'offset' => '',
-            'exclusive' => '',
-            'finderQuery' => '',
-            'counterQuery' => ''));
+    );
 }

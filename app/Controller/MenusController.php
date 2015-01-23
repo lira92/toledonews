@@ -85,15 +85,29 @@ class MenusController extends AppController {
     }
     
     function ver($id){
-        
         $Menu = null;
         if ($id<>null) {
             if (!$this->Menu->exists($id)) {
         		throw new NotFoundException(__('Menu inválido.'));
         	} else {
-        	   $Menu = $this->Menu->findById($id);
+               $Menu = $this->Menu->find('first', array( 
+                                                            'conditions'=>array('AND'=> array('Menu.id'=>$id) ),
+                                                            'contain' => array('ChildMenu'),
+                                                            'recursive' => -1
+               ));
+               
+               // Array Com as sub-menus do menu selecionado ($id)
+               $arr_sub_menus = ((isset($Menu['ChildMenu'])) ? Set::combine($Menu['ChildMenu'], '{n}.id', '{n}.id') : array()); // Captura lista de Id filho
+               $arr_sub_menus[$id] = $id; // Adiciona Id Pai
+               
+               $Paginas = $this->Menu->Pagina->find('all', array( 
+                                                            'conditions'=>array('AND'=> array('Pagina.menu_id'=>$arr_sub_menus) ),
+                                                            'recursive' => -1
+               ));
+               
+               $this->layout = 'site';
+               $this->set(compact('Menu', 'Paginas'));
         	}
-    	}
-        
+    	}        
     }
 }
