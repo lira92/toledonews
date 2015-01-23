@@ -1,0 +1,74 @@
+
+
+a{
+    color:#000000;
+    text-decoration: underline;
+}
+
+ul,li{
+	list-style:none;
+	margin:0;
+	padding:0;}
+
+/*             **********************************************               SLIDE                     ****************************************                   */
+
+
+#wrapper{margin-right:auto; margin-left: auto; margin:0 auto; margin-top:0px; width:710px; height:302px;}
+.sliderbutton {float:left; width:72px; height:63px; margin-top:100px;}
+.sliderbutton_right {float:right; width:72px; height:63px; margin-top:100px; z-index:10000;}
+.sliderbutton img {cursor:pointer}
+.sliderbutton img:hover {}
+
+.numeros{float:left; width:48px; height:63px; display:block;}
+#slider {float:left; position:relative; overflow:auto; height:302px; width:725px; }
+#slider ul {position:absolute; list-style:none; top:0; left:0}
+#slider li {float:left; height:325px; width:760px;}
+
+.pagination {border:0; float:left; list-style:none;}
+.pagination li {float:left; cursor:pointer; padding:0px 0px; }
+.pagination li:hover {border:0; }
+li.current {}
+
+li#content {height:302px; width:710px; padding:15px 28px 15px 18px}
+#content h1 {font:22px Georgia,Verdana; margin-bottom:15px; color:#036}
+
+
+
+/*           ********************************************************************                 SLIDE         **********************************************************************************************                               */
+
+#slides{
+    width:710px;
+    height:302px;
+    margin-top:0px;
+     margin-left:0px;
+    float:left;
+   
+}
+
+#paginador{
+    margin-left:15px;
+
+}
+
+
+#paginador a{
+	width:17px;
+	height:17px;
+	display:block;
+	float:left;
+	background: url(../imagens/botoes_slide/botaoof.png) no-repeat center;
+	text-indent:-999999px;
+	display:inline-block;
+         margin-top: 5px;
+           
+}
+
+#paginador a.activeSlide{
+	background: url(../imagens/botoes_slide/botaoon.png) no-repeat center;
+}
+
+
+
+
+       li.headlink ul { display: none; }
+       li.headlink:hover ul { display: block; }

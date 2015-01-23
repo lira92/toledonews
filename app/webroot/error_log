@@ -1,0 +1,6 @@
+[25-Aug-2014 22:43:25 America/Chicago] PHP Fatal error:  Cannot redeclare AppController::$components in /home/lyftweb/public_html/sitetoledonews/site/app/Controller/AppController.php on line 35
+[25-Aug-2014 23:06:28 America/Chicago] PHP Fatal error:  Call to undefined function UsermgmtInIt() in /home/lyftweb/public_html/sitetoledonews/site/app/Plugin/Usermgmt/Controller/Component/UserAuthComponent.php on line 53
+[25-Aug-2014 23:06:28 America/Chicago] PHP Fatal error:  Call to undefined function UsermgmtInIt() in /home/lyftweb/public_html/sitetoledonews/site/app/Plugin/Usermgmt/Controller/Component/UserAuthComponent.php on line 53
+[25-Aug-2014 23:17:31 America/Chicago] PHP Fatal error:  Unsupported operand types in /home/lyftweb/public_html/sitetoledonews/site/lib/Cake/Core/CakePlugin.php on line 126
+[25-Aug-2014 23:17:31 America/Chicago] PHP Fatal error:  Unsupported operand types in /home/lyftweb/public_html/sitetoledonews/site/lib/Cake/Core/CakePlugin.php on line 126
+[26-Aug-2014 14:11:12 America/Chicago] PHP Fatal error:  Class 'AppController' not found in /home/lyftweb/public_html/sitetoledonews/site/app/Controller/PagesController.php on line 31
