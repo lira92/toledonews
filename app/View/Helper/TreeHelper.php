@@ -2,6 +2,7 @@
 class TreeHelper extends Helper {
 	var $helpers = array('Form', 'Html', 'Timthumb');
     
+    public $bootstrap = false;
     public $block_start = '<ul>';
     public $context_start = '<li>';
     public $context = array('<span>%s</span>' => array( 'titulo' ));
@@ -14,16 +15,23 @@ class TreeHelper extends Helper {
         return $return;
     }
 
-    function list_element($data, $modelAlias, $level) {        
+    function list_element($data, $modelAlias, $level, $thischild=false) {        
         $output = '';
         if (count($data)>0) {
-            $output .= $this->_outElement( $this->block_start, $modelAlias, $data[0] );
+            if ($this->bootstrap && ($level==0)) {
+                $output .= $this->_outElement( $this->block_start, $modelAlias, $data[0] );
+                
+            } else if ($this->bootstrap && $thischild) {
+                $output .= $this->_outElement( '<ul class="dropdown-menu">', $modelAlias, $data[0] );
+            } else {
+                $output .= $this->_outElement( '<ul>', $modelAlias, $data[0] );
+            }
             
             foreach ($data as $key => $val) {
                 $output .= $this->_outElement( $this->context_start, $modelAlias, $val );
                 $output .= $this->_outElement( $this->context, $modelAlias, $val, isset($val['children'][0]) );
                 
-                if (isset($val['children'][0])) $output .= $this->list_element($val['children'], $modelAlias, $level + 1);
+                if (isset($val['children'][0])) $output .= $this->list_element($val['children'], $modelAlias, $level + 1, (isset($val['children'][0])) );
                 
                 $output .= $this->_outElement( $this->context_end, $modelAlias, $val );
             }
