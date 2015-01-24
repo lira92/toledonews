@@ -2,9 +2,17 @@
 .mt-10 { margin-top: 10px; }
 .menu li:hover ul { display:block; }
 
+.secao_miolo { text-align: left; }
+.lista_noticias div.row { margin-bottom: 10px; border-bottom: 1px solid #FFF; color: #FFF; padding: 10px;}
 .lista_noticias div h2 { font-size: 14pt; font-weight: bold; border-bottom: 2px solid #ccc; padding-bottom: 5px; }
-.lista_noticias div a { display: block; }
+.lista_noticias div a { display: block; text-align: left; }
+.lista_noticias div a img { height:52px; width:69px; float:left; margin-right:5px; }
 .lista_noticias div a span { text-align: left; }
 
 div.publicidade { height: 100px; background-color: #FF9A66;}
 div.publicidade h2 { margin-top: 20px; color: #FFF; border-bottom-color: #FFF; }
+
+.blog-main { font-size: 18px; line-height: 1.5; }
+.blog-post { margin-bottom: 60px; }
+.blog-post-title { margin-bottom: 5px; font-size: 40px; }
+.blog-post-meta { margin-bottom: 20px; color: #999; }
