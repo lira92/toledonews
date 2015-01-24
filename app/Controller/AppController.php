@@ -31,8 +31,7 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-	var $helpers = array('Form', 'Html', 'Session', 'Js', 'Usermgmt.UserAuth');
-
+	var $helpers = array('Form', 'Html', 'Session', 'Js', 'Usermgmt.UserAuth', 'Tree');
 	public $components = array('Session','RequestHandler', 'Usermgmt.UserAuth', 'AjaxMultiUpload.Upload');
 	public $uses = array('Menu','Pagina');
 	
@@ -42,7 +41,9 @@ class AppController extends Controller {
 	}
     
 	function beforeRender(){
-        $MenuSite = $this->Menu->find("threaded");
+        $MenuSite = $this->Menu->find("threaded", array(
+            'conditions'=>array('AND'=>array('Menu.parent_id NOT'=>null)) 
+        ));
         $this->set('MenuSite', $MenuSite);
         $this->set('title_for_layout', 'Rede news');
 	}

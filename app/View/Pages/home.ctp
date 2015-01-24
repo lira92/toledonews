@@ -1,4 +1,3 @@
-
 	<div class="secao_miolo">
 		<?php echo $this->element('banner'); ?>
 	</div>

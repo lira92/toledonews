@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 
 class PagesController extends AppController {
 
-	var $layout = 'home';
+	var $layout = 'site';
     
 	public function home() {
 		// depois q a função atualizar estiver funcionando aqui deve ser deletado;		
