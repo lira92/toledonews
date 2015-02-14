@@ -31,7 +31,8 @@
 		</td>
 		<td><?php echo h($pagina['Pagina']['titulo']); ?>&nbsp;</td>
 		<td><?php echo h($pagina['Pagina']['subtitulo']); ?>&nbsp;</td>
-		<td><?php echo h($pagina['Pagina']['src']); ?>&nbsp;</td>
+		<td><img src="app/webroot/img/paginas/<?php echo ($pagina['Pagina']['src']); ?>" height="80" width="80">
+		
 
 		<td><?php echo h($pagina['Pagina']['fonte']); ?>&nbsp;</td>
 		<td><?php echo h($pagina['Pagina']['contador']); ?>&nbsp;</td>
@@ -44,8 +45,8 @@
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $pagina['Pagina']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $pagina['Pagina']['id']), array(), __('Are you sure you want to delete # %s?', $pagina['Pagina']['id'])); ?>
 			<br/><br/>
-			<?php echo $this->Html->link(__('Imagens'), array('action' => 'gerenciarImg', $pagina['Pagina']['id'])); ?>
-			<?php echo $this->Html->link(__('Videos'), array('action' => 'gerenciarVideo', $pagina['Pagina']['id'])); ?>
+			<?php echo $this->Html->link(__('Imagens'), array('controller' => 'fotos', 'action' => 'add', $pagina['Pagina']['id'], $pagina['Pagina']['tipo_id'])); ?>
+			<?php echo $this->Html->link(__('Videos'), array('controller' => 'videos','action' => 'add', $pagina['Pagina']['id'], $pagina['Pagina']['tipo_id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

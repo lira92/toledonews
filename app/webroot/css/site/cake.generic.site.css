@@ -156,7 +156,7 @@ p {
 
 #todo {
 	position: relative;
-	width: 1028px;
+	width: 1140px;
 	margin:0px auto;
 	background-color: white;
 }
@@ -170,7 +170,7 @@ p {
 
 #meio {
 	position: relative;
-	width: 1028px;
+	width: 1140px;
 	min-height: 400px;
 	
 }
@@ -178,8 +178,8 @@ p {
 
 #miolo {
 	float: left;
-	width: 820px;
-	min-height: 400px;
+	width: 920px;
+	min-height: 300px;
 }
 
 #direita {
@@ -195,10 +195,10 @@ p {
 }
 
 .secao_miolo {
-	width: 820px;
+	width: 920px;
 	text-align: center;
 	margin: 2px 0px 4px 0px;
-	background-color: #cccccc;
+	/** background-color: #cccccc; **/
 }
 
 .secao_direita {

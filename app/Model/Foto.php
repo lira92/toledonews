@@ -10,36 +10,34 @@ App::uses('AppModel', 'Model');
  * @property Categoria $Categoria
  */
 class Foto extends AppModel {
-/*public $actsAs = array(
-	'Uploader.Attachment' => array(
-		'src' => array(
-			'overwrite' => true,
-			//'dbColumn' => 'src',
-			//'uploadDir' => '/localhost/app/webroot/img/uploads/',
-			//'uploadDir' => '/var/www/app/webroot/img/uploads/',
-			//'finalPath' => '/img/uploads/',
-			'nameCallback' => 'formatName',
-			'transforms' => array(
-				'imageSmall' => array(
-					'class' => 'crop',
-					'append' => '-small',
-					'overwrite' => true,
-					'self' => false,
-					'width' => 100,
-					'height' => 100
-				),
-				'imageMedium' => array(
-					'class' => 'resize',
-					'append' => '-medium',
-					'width' => 800,
-					'height' => 600,
-					'aspect' => false
-				)
-			)
-		)
-	)
-);*/
+ public $actsAs = array(
+        'Upload.Upload' => array(
+            'src' => array(
+                // Local onde salvar
+				'path'=>'{ROOT}webroot{DS}img{DS}{model}{DS}fotos{DS}',
+                'pathMethod'=>'flat',
+                'customName' => '{!getNewName}',
+                // Campos
+               // 'fields' => array(
+               //     'dir' => 'dir',
+               //     'type' => 'mimetype',
+               //     'size' => 'filesize'
+               // ),
+                // Thumbnails
+                'thumbnailMethod' => 'php', // GD
+                'thumbnailSizes' => array(
+                    'thumb' => '200x100',
+                    'large' => '550x502',
+                ),
+            ),
+            
+        )
+    );
 
+	public function getNewName($filename = ''){
+        return uniqid();
+    }
+	
 
 /**
  * Use database config
@@ -223,7 +221,7 @@ class Foto extends AppModel {
 		)
 	);
 	
-	public function beforeSave($options = array()) {
+/**	public function beforeSave($options = array()) {
 		if(!empty($this->data['Foto']['src']['name'])) {  
 			$this->data['Foto']['src'] = $this->upload($this->data['Foto']['src']);  
 		} else {  
@@ -253,7 +251,7 @@ class Foto extends AppModel {
 		if (!is_dir($dir)){  
 			$folder->create($dir);  
 		}  
-	}  
+	}  **/
 	  
 	/** 
 	 * Verifica se o nome do arquivo já existe, se existir adiciona um numero ao nome e verifica novamente 
@@ -262,7 +260,9 @@ class Foto extends AppModel {
 	 * @param String $data 
 	 * @return nome da imagem 
 	*/   
-	public function checa_nome($imagem, $dir)  
+	
+	
+	/** public function checa_nome($imagem, $dir)  
 	{  
 		$imagem_info = pathinfo($dir.$imagem['name']);  
 		$imagem_nome = $this->trata_nome($imagem_info['filename']).'.'.$imagem_info['extension'];  
@@ -277,6 +277,7 @@ class Foto extends AppModel {
 		$imagem['name'] = $imagem_nome;  
 		return $imagem;  
 	}  
+	 **/
 	  
 	/** 
 	 * Trata o nome removendo espaços, acentos e caracteres em maiúsculo. 
@@ -284,18 +285,23 @@ class Foto extends AppModel {
 	 * @param Array $imagem 
 	 * @param String $data 
 	*/   
+	
+	/**
 	public function trata_nome($imagem_nome)  
 	{  
 		$imagem_nome = strtolower(Inflector::slug($imagem_nome,'-'));  
 		return $imagem_nome;  
 	}  
-	  
+	 **/
+	 
 	/** 
 	 * Move o arquivo para a pasta de destino. 
 	 * @access public 
 	 * @param Array $imagem 
 	 * @param String $data 
-	*/   
+	*/ 
+
+	/**
 	public function move_arquivos($imagem, $dir)  
 	{  
 		App::uses('File', 'Utility');  
@@ -304,4 +310,5 @@ class Foto extends AppModel {
 		$arquivo->copy($dir.$imagem['name']);  
 		$arquivo->close();  
 	}  	
+	**/
 }

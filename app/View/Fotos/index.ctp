@@ -3,9 +3,10 @@
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
+			<!-- th><?php echo $this->Paginator->sort('id'); ?></th -->
 			<th><?php echo $this->Paginator->sort('tipo_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('categoria_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('pagina_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('titulo'); ?></th>
 			<th><?php echo $this->Paginator->sort('telefone'); ?></th>
 			<th><?php echo $this->Paginator->sort('email'); ?></th>
@@ -16,20 +17,22 @@
 			<th><?php echo $this->Paginator->sort('Atividade'); ?></th>
 			<th><?php echo $this->Paginator->sort('data_cadastro'); ?></th>
 			<th><?php echo $this->Paginator->sort('contador'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
+			
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
 	<tbody>
 	<?php foreach ($fotos as $foto): ?>
 	<tr>
-		<td><?php echo h($foto['Foto']['id']); ?>&nbsp;</td>
+		<!-- td><?php echo h($foto['Foto']['id']); ?>&nbsp;</td -->
 		<td>
 			<?php echo $this->Html->link($foto['Tipo']['nome'], array('controller' => 'tipos', 'action' => 'view', $foto['Tipo']['id'])); ?>
 		</td>
 		<td>
 			<?php echo $this->Html->link($foto['Categoria']['titulo'], array('controller' => 'categorias', 'action' => 'view', $foto['Categoria']['id'])); ?>
+		</td>
+		<td>
+			<?php echo $this->Html->link($foto['Pagina']['titulo'], array('controller' => 'paginas', 'action' => 'view', $foto['Pagina']['id'])); ?>
 		</td>
 		<td><?php echo h($foto['Foto']['titulo']); ?>&nbsp;</td>
 		<td><?php echo h($foto['Foto']['telefone']); ?>&nbsp;</td>
@@ -37,12 +40,11 @@
 		<td><?php echo h($foto['Foto']['endereco']); ?>&nbsp;</td>
 		<td><?php echo h($foto['Foto']['site']); ?>&nbsp;</td>
 		<td><?php echo h($foto['Foto']['descricao']); ?>&nbsp;</td>
-		<td><?php echo h($foto['Foto']['src']); ?>&nbsp;</td>
+		<td><img src="/toledonews/app/webroot/img/foto/fotos/thumb_<?php echo h($foto['Foto']['src']); ?>"></td>
 		<td><?php echo h($foto['Foto']['Atividade']); ?>&nbsp;</td>
 		<td><?php echo h($foto['Foto']['data_cadastro']); ?>&nbsp;</td>
 		<td><?php echo h($foto['Foto']['contador']); ?>&nbsp;</td>
-		<td><?php echo h($foto['Foto']['modified']); ?>&nbsp;</td>
-		<td><?php echo h($foto['Foto']['created']); ?>&nbsp;</td>
+		
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $foto['Foto']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $foto['Foto']['id'])); ?>

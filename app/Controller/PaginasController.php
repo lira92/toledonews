@@ -10,60 +10,7 @@ App::uses('AppController', 'Controller');
 class PaginasController extends AppController {
     
     public $components = array('Paginator');
-    public function gerenciarImg($id = null) {
-        if (!$this->Pagina->Foto->exists($id)) {
-            $this->Pagina->Foto->create();
-            $this->Pagina->Foto->set(array(
-                'id' => $id,
-                'tipo_id' => $id,
-                'categoria_id' => $id,
-                'pagina_id' => $id,
-                ));
-            if ($this->Pagina->Foto->save($this->request->data)) {
-                $this->Session->setFlash(__('Gerenciador de Imagens criado.'));
-                $this->redirect(array(
-                    'controller' => 'fotos',
-                    'action' => 'edit',
-                    $id));
-                //return $this->redirect(array('action' => 'index'));
-            } else {
-                $this->Session->setFlash(__('Não conseguiu criar imagem'));
-            }
-        } else {
-            // se ele pular aqui é pq ja existe essa img cadastrada
-            $this->redirect(array(
-                'controller' => 'fotos',
-                'action' => 'edit',
-                $id));
-        }
-    }
-    
-    public function gerenciarVideo($id = null) {
-        if (!$this->Pagina->Foto->exists($id)) {
-            $this->Pagina->Foto->create();
-            $this->Pagina->Foto->set(array(
-                'id' => $id,
-                'categoria_id' => $id,
-                'pagina_id' => $id,
-                ));
-            if ($this->Pagina->Foto->save($this->request->data)) {
-                $this->Session->setFlash(__('Gerenciador de videos criado.'));
-                $this->redirect(array(
-                    'controller' => 'videos',
-                    'action' => 'edit',
-                    $id));
-                //return $this->redirect(array('action' => 'index'));
-            } else {
-                $this->Session->setFlash(__('Não conseguiu criar video'));
-            }
-        } else {
-            // se ele pular aqui é pq ja existe essa img cadastrada
-            $this->redirect(array(
-                'controller' => 'videos',
-                'action' => 'edit',
-                $id));
-        }
-    }
+   
     public function index() {
         $this->Pagina->recursive = 0;
         $this->set('paginas', $this->Paginator->paginate());

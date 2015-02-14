@@ -11,8 +11,21 @@
 	
     <?php
     echo $this->Html->meta('icon');
-    echo $this->Html->css(array('site/cake.generic.site', 'bootstrap.min','site/new_style'));
-    echo $this->Html->script(array('site/jquery-1.11.2.min.js', 'bootstrap.min'));
+    echo $this->Html->css(array(
+									'site/cake.generic.site', 
+									'bootstrap.min',
+									'site/new_style',
+									'galeria/galleriffic-2'
+							));
+    echo $this->Html->script(array(
+									'site/jquery-1.11.2.min.js', 
+									'bootstrap.min',
+									'slideshow/jquery-1.3.1.min',
+									'slideshow/passadordeimg',
+									'galeria/jquery-1.3.2',
+									'galeria/jquery.galleriffic',
+									'galeria/jquery.opacityrollover'	
+							));
     
     echo $this->fetch('meta');
     echo $this->fetch('css');

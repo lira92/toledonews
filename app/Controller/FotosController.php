@@ -49,7 +49,8 @@ class FotosController extends AppController {
 
 
 
-	public function add() {
+	public function add($id = null, $tipo_id = null) {
+		
 		if ($this->request->is('post')) {
 		
 			$this->Foto->create();
@@ -61,12 +62,17 @@ class FotosController extends AppController {
 				$this->Session->setFlash(__('The foto could not be saved. Please, try again.'));
 			}
 		}
-		$tipos = $this->Foto->Tipo->find('list');
+		
+		$optionsTipos = array('conditions' => array('Tipo.id' => $tipo_id));
+		$optionsPaginas = array('conditions' => array('Pagina.id' => $id));
+		
+		$tipos = $this->Foto->Tipo->find('list', $optionsTipos);
 		$categorias = $this->Foto->Categoria->find('list');
-		$paginas = $this->Foto->Pagina->find('list');
+		$paginas = $this->Foto->Pagina->find('list',$optionsPaginas);
 		$this->set(compact('paginas','tipos', 'categorias'));
 	}
-
+	
+	
 /**
  * edit method
  *

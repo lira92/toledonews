@@ -40,7 +40,7 @@ class UserAuthComponent extends Component {
 		$action = $c->params['action'];
 		$actionUrl = $controller.'/'.$action;
 		$requested= (isset($c->params['requested']) && $c->params['requested']==1) ? true : false;
-		$permissionFree=array('users/login', 'users/logout', 'users/register', 'users/userVerification', 'users/forgotPassword', 'users/activatePassword', 'pages/home', 'users/accessDenied', 'users/emailVerification');
+		$permissionFree=array('users/login', 'users/logout', 'users/register', 'users/userVerification', 'users/forgotPassword', 'users/activatePassword', 'menus/ver', 'paginas/ver', 'pages/home', 'users/accessDenied', 'users/emailVerification');
 		$access =str_replace(' ','',ucwords(str_replace('_',' ',$controller))).'/'.$action;
 		$allControllers=$this->ControllerList->getControllerWithMethods();
 		$errorPage=false;

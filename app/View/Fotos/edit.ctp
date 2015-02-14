@@ -1,5 +1,5 @@
 <div class="fotos form">
-<?php echo $this->Form->create('Foto'); ?>
+<?php echo $this->Form->create('Foto', array('type' => 'file')); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Foto'); ?></legend>
 	<?php
@@ -13,7 +13,7 @@
 		echo $this->Form->input('endereco');
 		echo $this->Form->input('site');
 		echo $this->Form->input('descricao');
-		//echo $this->Form->input('src');
+		echo $this->Form->input('src', array('type' => 'file'));
 		echo $this->Form->input('atividade');
 		
 	?>

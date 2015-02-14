@@ -14,8 +14,7 @@
 		echo $this->Form->input('descricao');
 		echo $this->Form->input('src', array('type' => 'file'));
 		echo $this->Form->input('atividade');
-		echo $this->Form->input('data_cadastro');
-		echo $this->Form->input('contador');
+		
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
