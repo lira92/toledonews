@@ -12,6 +12,10 @@
 		echo $this->Form->input('url');
 		echo $this->Form->input('miniatura');
 		echo $this->Form->input('popup');
+		echo $this->Form->input('local', array(
+				'options' => array(1 => 'Lateral Direita', 2 => 'Lateral Direita home', 3 => 'Meio home',  4 => 'Em baixo do slideshow', 5 => 'debaixo das noticias home'),
+				'empty' => 'escolha o local'
+));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

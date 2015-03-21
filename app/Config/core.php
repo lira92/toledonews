@@ -33,7 +33,7 @@
  */
 	//require_once dirname(__DIR__) . '\Vendor\autoload.php';
 	
-	Configure::write('debug', 2);
+	Configure::write('debug',2);
 	
 //	Configure::write('Config.language', 'por');
 /**

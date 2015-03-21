@@ -9,10 +9,10 @@
 			<th><?php echo $this->Paginator->sort('titulo'); ?></th>
 			<th><?php echo $this->Paginator->sort('src'); ?></th>
 			<th><?php echo $this->Paginator->sort('url'); ?></th>
-			<th><?php echo $this->Paginator->sort('miniatura'); ?></th>
+			
 			<th><?php echo $this->Paginator->sort('popup'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
+			
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -20,19 +20,18 @@
 	<?php foreach ($patrocinios as $patrocinio): ?>
 	<tr>
 		<td><?php echo h($patrocinio['Patrocinio']['id']); ?>&nbsp;</td>
-		<td>
+		<td style="width: 100px;">
 			<?php echo $this->Html->link($patrocinio['Pagina']['titulo'], array('controller' => 'paginas', 'action' => 'view', $patrocinio['Pagina']['id'])); ?>
 		</td>
 		<td>
 			<?php echo $this->Html->link($patrocinio['Menu']['titulo'], array('controller' => 'menus', 'action' => 'view', $patrocinio['Menu']['id'])); ?>
 		</td>
 		<td><?php echo h($patrocinio['Patrocinio']['titulo']); ?>&nbsp;</td>
-		<td><?php echo h($patrocinio['Patrocinio']['src']); ?>&nbsp;</td>
+		<td><?php echo $this->Html->image('patrocinio/fotos/thumb_'.$patrocinio['Patrocinio']['src'], array('alt' => $patrocinio['Patrocinio']['url'])); ?>&nbsp;</td>
 		<td><?php echo h($patrocinio['Patrocinio']['url']); ?>&nbsp;</td>
-		<td><?php echo h($patrocinio['Patrocinio']['miniatura']); ?>&nbsp;</td>
 		<td><?php echo h($patrocinio['Patrocinio']['popup']); ?>&nbsp;</td>
 		<td><?php echo h($patrocinio['Patrocinio']['modified']); ?>&nbsp;</td>
-		<td><?php echo h($patrocinio['Patrocinio']['created']); ?>&nbsp;</td>
+		
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $patrocinio['Patrocinio']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $patrocinio['Patrocinio']['id'])); ?>

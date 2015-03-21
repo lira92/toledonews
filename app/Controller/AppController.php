@@ -32,8 +32,8 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 	var $helpers = array('Form', 'Html', 'Session', 'Js', 'Usermgmt.UserAuth', 'Tree');
-	public $components = array('Session','RequestHandler', 'Usermgmt.UserAuth', 'AjaxMultiUpload.Upload');
-	public $uses = array('Menu','Pagina');
+	public $components = array('Session','RequestHandler', 'Usermgmt.UserAuth', 'AjaxMultiUpload.Upload','DebugKit.Toolbar');
+	public $uses = array('Menu','Pagina','Patrocinio');
 	
 	function beforeFilter(){
 		$this->userAuth();
@@ -41,9 +41,20 @@ class AppController extends Controller {
 	}
     
 	function beforeRender(){
-        $MenuSite = $this->Menu->find("threaded", array(
-            'conditions'=>array('AND'=>array('Menu.parent_id NOT'=>null)) 
-        ));
+		// pegar na sessão o id da cidade e adicionar na consulta
+		$local_id = $this->Session->read('localID');
+        if($local_id == null){
+		
+			$MenuSite = $this->Menu->find("threaded", array(
+				'conditions'=>array('AND'=>array('Menu.parent_id NOT'=>null)),
+				'order' => array('lft' => 'ASC')  
+			));
+		}else{
+			$MenuSite = $this->Menu->find("threaded", array(
+				'conditions'=>array('AND'=>array('Menu.parent_id'=>$local_id)),
+				'order' => array('lft' => 'ASC')  
+			));
+		}
         $this->set('MenuSite', $MenuSite);
         $this->set('title_for_layout', 'Rede news');
 	}

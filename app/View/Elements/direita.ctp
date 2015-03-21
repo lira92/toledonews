@@ -2,7 +2,7 @@
 	<div style"float: right;">
 <?php
 	
-	$diretorio = "app/webroot/img/patrocinio";
+	$diretorio = "app/webroot/img/patrocinio/fotos";
 	//$diretorio = WWW_ROOT.$dir.DS;
 foreach ($patrocinios as $key => $f):
 		//print_r ($f);

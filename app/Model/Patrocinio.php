@@ -7,7 +7,34 @@ App::uses('AppModel', 'Model');
  * @property Menu $Menu
  */
 class Patrocinio extends AppModel {
+ public $actsAs = array(
+        'Upload.Upload' => array(
+            'src' => array(
+                // Local onde salvar
+				'path'=>'{ROOT}webroot{DS}img{DS}{model}{DS}fotos{DS}',
+                'pathMethod'=>'flat',
+                'customName' => '{!getNewName}',
+                // Campos
+               // 'fields' => array(
+               //     'dir' => 'dir',
+               //     'type' => 'mimetype',
+               //     'size' => 'filesize'
+               // ),
+                // Thumbnails
+                'thumbnailMethod' => 'php', // GD
+                'thumbnailSizes' => array(
+                    'thumb' => '200x100',
+                    'large' => '550x502',
+                ),
+            ),
+            
+        )
+    );
 
+	public function getNewName($filename = ''){
+        return uniqid();
+    }
+	
 /**
  * Use database config
  *
@@ -155,14 +182,15 @@ class Patrocinio extends AppModel {
 			'order' => ''
 		)
 	);
+	/*
 	public function beforeSave($options = array()) {
-		if(!empty($this->data['Patrocinio']['src']['name'])) {  
-			$this->data['Patrocinio']['src'] = $this->upload($this->data['Patrocinio']['src']);  
+		if(!empty($this->data['Pagina']['src']['name'])) {  
+			$this->data['Pagina']['src'] = $this->upload($this->data['Pagina']['src']);  
 		} else {  
-			unset($this->data['Patrocinio']['src']);  
+			unset($this->data['Pagina']['src']);  
 		} 
 	}
-	public function upload($imagem = array(), $dir = 'img/patrocinio')  
+	public function upload($imagem = array(), $dir = 'img/paginas')  
 	{  
 		$dir = WWW_ROOT.$dir.DS;  
 	  
@@ -194,6 +222,8 @@ class Patrocinio extends AppModel {
 	 * @param String $data 
 	 * @return nome da imagem 
 	*/   
+	
+	/*
 	public function checa_nome($imagem, $dir)  
 	{  
 		$imagem_info = pathinfo($dir.$imagem['name']);  
@@ -216,6 +246,8 @@ class Patrocinio extends AppModel {
 	 * @param Array $imagem 
 	 * @param String $data 
 	*/   
+	
+	/*
 	public function trata_nome($imagem_nome)  
 	{  
 		$imagem_nome = strtolower(Inflector::slug($imagem_nome,'-'));  
@@ -228,6 +260,7 @@ class Patrocinio extends AppModel {
 	 * @param Array $imagem 
 	 * @param String $data 
 	*/   
+	/*
 	public function move_arquivos($imagem, $dir)  
 	{  
 		App::uses('File', 'Utility');  
@@ -236,4 +269,5 @@ class Patrocinio extends AppModel {
 		$arquivo->copy($dir.$imagem['name']);  
 		$arquivo->close();  
 	}  
+		*/
 }

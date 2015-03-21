@@ -6,7 +6,34 @@ App::uses('AppModel', 'Model');
  * @property Categoria $Categoria
  */
 class Patrocinadore extends AppModel {
+	 public $actsAs = array(
+        'Upload.Upload' => array(
+            'src' => array(
+                // Local onde salvar
+				'path'=>'{ROOT}webroot{DS}img{DS}{model}{DS}fotos{DS}',
+                'pathMethod'=>'flat',
+                'customName' => '{!getNewName}',
+                // Campos
+               // 'fields' => array(
+               //     'dir' => 'dir',
+               //     'type' => 'mimetype',
+               //     'size' => 'filesize'
+               // ),
+                // Thumbnails
+                'thumbnailMethod' => 'php', // GD
+                'thumbnailSizes' => array(
+                    'thumb' => '200x100',
+                    'large' => '550x502',
+                ),
+            ),
+            
+        )
+    );
 
+	public function getNewName($filename = ''){
+        return uniqid();
+    }
+	
 /**
  * Use database config
  *
@@ -82,29 +109,7 @@ class Patrocinadore extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'src' => array(
-			'maxLength' => array(
-				'rule' => array('maxLength', 250),				'message' => 'no máximo 250 characters!',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			'minLength' => array(
-				'rule' => array('minLength', 3),				'message' => 'Informe no minimo 03 characters!',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),				'message' => 'Este campo deve ser informado!',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+		
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -138,14 +143,15 @@ class Patrocinadore extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+	/*
 	public function beforeSave($options = array()) {
-		if(!empty($this->data['Patrocinadore']['src']['name'])) {  
-			$this->data['Patrocinadore']['src'] = $this->upload($this->data['Patrocinadore']['src']);  
+		if(!empty($this->data['Pagina']['src']['name'])) {  
+			$this->data['Pagina']['src'] = $this->upload($this->data['Pagina']['src']);  
 		} else {  
-			unset($this->data['Patrocinadore']['src']);  
+			unset($this->data['Pagina']['src']);  
 		} 
 	}
-	public function upload($imagem = array(), $dir = 'img/patrocinadores')  
+	public function upload($imagem = array(), $dir = 'img/paginas')  
 	{  
 		$dir = WWW_ROOT.$dir.DS;  
 	  
@@ -177,6 +183,8 @@ class Patrocinadore extends AppModel {
 	 * @param String $data 
 	 * @return nome da imagem 
 	*/   
+	
+	/*
 	public function checa_nome($imagem, $dir)  
 	{  
 		$imagem_info = pathinfo($dir.$imagem['name']);  
@@ -199,6 +207,8 @@ class Patrocinadore extends AppModel {
 	 * @param Array $imagem 
 	 * @param String $data 
 	*/   
+	
+	/*
 	public function trata_nome($imagem_nome)  
 	{  
 		$imagem_nome = strtolower(Inflector::slug($imagem_nome,'-'));  
@@ -211,6 +221,7 @@ class Patrocinadore extends AppModel {
 	 * @param Array $imagem 
 	 * @param String $data 
 	*/   
+	/*
 	public function move_arquivos($imagem, $dir)  
 	{  
 		App::uses('File', 'Utility');  
@@ -219,4 +230,5 @@ class Patrocinadore extends AppModel {
 		$arquivo->copy($dir.$imagem['name']);  
 		$arquivo->close();  
 	}  
+		*/
 }

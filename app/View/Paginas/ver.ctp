@@ -2,32 +2,33 @@
 			document.write('<style>.noscript { display: none; }</style>');
 		</script>
 
+	<div class="secao_miolo lista_noticias" style="padding: 0px 10px;">
+		<div class="row">
+			<div class="blog-main">
+				<div class="blog-post">
+					<?PHP if ($Pagina) { ?>
+						
+						<h2 class="blog-post-title" style="color: <?PHP echo $Pagina['Menu']['cor']; ?>; "><?PHP echo $Pagina['Pagina']['titulo']; ?></h2>
+						<h3 class="blog-post-title"><?PHP echo $Pagina['Pagina']['subtitulo']; ?></h2>
+						<?php echo $Pagina['Pagina']['conteudo']; ?>
+						
+					<?PHP } else { ?>
+						<h2 class="blog-post-title">Ops!!!</h2>
+						<p>Ocorreu algum erro, ao carregar a p&aacute;gina.<br />Tente novamente mais tarde.</p>
+					<?PHP } ?>
+				</div>  
+				<!-- /.blog-post -->
+			</div>
+			<!-- /.blog-sidebar -->
+			<div class = "fonte"><strong>Fonte: </strong><?PHP echo $Pagina['Pagina']['fonte']; ?></div>
+		</div>
+	</div>
+	
+	
+	
+	
+<?php  if(!empty($Pagina['Foto'])){?>
 
-<div class="secao_miolo lista_noticias" style="padding: 0px 10px;">
-    <div class="row">
-    	<div class="col-sm-8 blog-main">
-    		<div class="blog-post">
-                <?PHP if ($Pagina) { ?>
-                    
-                    <h2 class="blog-post-title"><?PHP echo $Pagina['Pagina']['titulo']; ?></h2>
-                    <?PHP echo $Pagina['Pagina']['conteudo']; ?>
-                    
-                <?PHP } else { ?>
-        			<h2 class="blog-post-title">Ops!!!</h2>
-                    <p>Ocorreu algum erro, ao carregar a p&aacute;gina.<br />Tente novamente mais tarde.</p>
-                <?PHP } ?>
-            </div>  
-    		<!-- /.blog-post -->
-    	</div>
-    	<!-- /.blog-sidebar -->
-    </div>
-	
-	
-		
-		
-	
-	
-</div>
 <div id="page">
 			<div id="container">
 				<!-- Start Advanced Gallery Html Containers -->
@@ -62,6 +63,8 @@
 				<div style="clear: both;"></div>
 			</div>
 		</div>
+<?php } ?>		
+		
 <script type="text/javascript">
 			jQuery(document).ready(function($) {
 				// We only want these styles applied when javascript is enabled

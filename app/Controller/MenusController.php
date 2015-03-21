@@ -90,6 +90,9 @@ class MenusController extends AppController {
             if (!$this->Menu->exists($id)) {
         		throw new NotFoundException(__('Menu inválido.'));
         	} else {
+				$this->Session->write('menu_patrocinio_ID', $id);
+				$this->Session->write('pagina_patrocinio_ID', null);
+			
                $Menu = $this->Menu->find('first', array( 
                                                             'conditions'=>array('AND'=> array('Menu.id'=>$id) ),
                                                             'contain' => array('ChildMenu'),
@@ -100,13 +103,22 @@ class MenusController extends AppController {
                $arr_sub_menus = ((isset($Menu['ChildMenu'])) ? Set::combine($Menu['ChildMenu'], '{n}.id', '{n}.id') : array()); // Captura lista de Id filho
                $arr_sub_menus[$id] = $id; // Adiciona Id Pai
                
-               $Paginas = $this->Menu->Pagina->find('all', array( 
+               $Paginas_meio = $this->Menu->Pagina->find('all', array( 
                                                             'conditions'=>array('AND'=> array('Pagina.menu_id'=>$arr_sub_menus) ),
-                                                            'recursive' => -1
+                                                            'recursive' => -1,
+															'order' => array('Pagina.created DESC'),
+															'limit' => 6
+               ));
+			   $Paginas_lateral = $this->Menu->Pagina->find('all', array( 
+                                                            'conditions'=>array('AND'=> array('Pagina.menu_id'=>$arr_sub_menus) ),
+                                                            'recursive' => -1,
+															'order' => array('Pagina.created DESC'),
+															'limit' => 10,
+															'offset' => 6
                ));
                
                $this->layout = 'site';
-               $this->set(compact('Menu', 'Paginas'));
+               $this->set(compact('Menu', 'Paginas_meio', 'Paginas_lateral'));
         	}
     	}        
     }

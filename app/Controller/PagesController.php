@@ -8,58 +8,74 @@ class PagesController extends AppController {
     
 	public function home() {
 		// depois q a função atualizar estiver funcionando aqui deve ser deletado;		
-		///--------------------------------------------------------------------
-		//$Menulist = $this->Menu->generateTreeList(array('Menu.id' => 27),null,null,"+");
-        
-        $this->Menu->recursive = -1;
-		$Menulist = $this->Menu->find("all", array(
+        $this->Session->write('menu_patrocinio_ID', null);
+		$this->Session->write('pagina_patrocinio_ID', null);
+		$this->Menu->recursive = 1;
+		
+		
+		/*$Menulist = $this->Menu->find("all", array(
                                         'conditions' => array('Menu.home' => 1),
                                         'fields' => array('Menu.*', 'Pagina.*', 'COUNT(Pagina.id) AS contador'),
                                         'joins' => array( array(
-                                                'table' => '(SELECT * FROM paginas ORDER BY id DESC)',
+                                                'table' => '(SELECT * FROM paginas  ORDER BY inicio DESC)',
                                                 'alias' => 'Pagina',
                                                 'conditions'=> array('Menu.id=Pagina.menu_id')
                                         ) ),
                                         'group' => array('Menu.id'),
-                                        'order' => array('Menu.id ASC')
-        ));
-        
+                                        'order' => array('Pagina.inicio DESC')
+        ));*/
+        //$local_id = $this->Session->read('localID');
+		$local_id = 27;
+       	$id_MenuSite = $this->Menu->children($local_id); 
+		$array_id_filhos = array(null);
+		foreach ($id_MenuSite as $key => $Menu) {
+			$array_id_filhos[$Menu['Menu']['id']] = $Menu['Menu']['id'];
+		
+		}
+		$Menulist_home = $this->Pagina->find("all", array(
+										'limit' => 18,
+										'conditions' => array('Pagina.menu_id' => $array_id_filhos),
+										'order' => array('inicio DESC')
+		));
+
 		$slideshow = $this->Pagina->find('all', array('conditions' => array('slideshow' => 1)));
-                
+        
+		$publicidade_meio = $this->Patrocinio->find('all', array('conditions' => array('local' => 3)));
+
+        $this->set('id_MenuSite',$id_MenuSite);
+        $this->set('publicidade_meio',$publicidade_meio);
 		$this->set('slideshow',$slideshow);
-		$this->set('Menulist',$Menulist);	 
+		$this->set('Menulist_home',$Menulist_home);	
+
+
+		
 	}
     
+	
+	
+	
+	
+	
+	
+	
+	
 	public function atualiza() {
-	
-		//essa function vai ser responsavel por alterar a sesseion do local 
-		// coloquei um formulario no layout q chama essa function
-		// não esta funcionando verificar a chamada do formulario no layout linha 205
-		
-		// a idéia é chamar essa function atualizar a session e dar um redirect para pagina inicial pages/home 
-		// dessa forma as funções de menu e home rodão novamente e atualizão as noticias
-		
-		// se não der de usar o formulario do cake usar select em JS e atualizar a session e dar um redirect com JS
-		// eu axo q já fiz uma gambiarra uma vez bem parecida mas não lembro mais 
-	
 	
 		$this->layout = false;
 		
 		if ($this->request->is('post')) {
 			$formulario = $this->request->data;
-			debug($formulario);
-			$this->Session->write('localID', $formulario['Atualiza']['local']);
+			//debug($formulario);
 		}else{
 			//verifica se ja existe session
 			if ($this->Session->valid('localID')) {
-				/// não lembo oque eu ia fazer aqui dentro
+				/// $this->Session->write('localID', $formulario['Atualiza']['local']);
 			}else{
-				// primeiro vamos trabalhar com padrão abrir o local Toledo id 27. depois pensamos em um esquema para apresentar noticias de todos locais
-				// se o usuario não selecionar local nenhum.
-				$this->Session->write('localID', 27);
+				$this->Session->write('localID', null);
 			}
 		}
-		$this->redirect(array('controller' => 'pages'));
+		$this->Session->write('localID', 29);
+		
 	}
 	
 }

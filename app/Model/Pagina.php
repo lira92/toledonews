@@ -9,7 +9,34 @@ App::uses('AppModel', 'Model');
  * @property Patrocinio $Patrocinio
  */
 class Pagina extends AppModel {
+ public $actsAs = array(
+        'Upload.Upload' => array(
+            'src' => array(
+                // Local onde salvar
+				'path'=>'{ROOT}webroot{DS}img{DS}{model}s{DS}',
+                'pathMethod'=>'flat',
+                'customName' => '{!getNewName}',
+                // Campos
+               // 'fields' => array(
+               //     'dir' => 'dir',
+               //     'type' => 'mimetype',
+               //     'size' => 'filesize'
+               // ),
+                // Thumbnails
+                'thumbnailMethod' => 'php', // GD
+                'thumbnailSizes' => array(
+                    'thumb' => '200x100',
+                    'large' => '550x502',
+                ),
+            ),
+            
+        )
+    );
 
+	public function getNewName($filename = ''){
+        return uniqid();
+    }
+	
 /**
  * Use database config
  *
@@ -256,7 +283,7 @@ class Pagina extends AppModel {
 			'counterQuery' => ''
 		)
 	);
-	
+	/*
 	public function beforeSave($options = array()) {
 		if(!empty($this->data['Pagina']['src']['name'])) {  
 			$this->data['Pagina']['src'] = $this->upload($this->data['Pagina']['src']);  
@@ -296,6 +323,8 @@ class Pagina extends AppModel {
 	 * @param String $data 
 	 * @return nome da imagem 
 	*/   
+	
+	/*
 	public function checa_nome($imagem, $dir)  
 	{  
 		$imagem_info = pathinfo($dir.$imagem['name']);  
@@ -318,6 +347,8 @@ class Pagina extends AppModel {
 	 * @param Array $imagem 
 	 * @param String $data 
 	*/   
+	
+	/*
 	public function trata_nome($imagem_nome)  
 	{  
 		$imagem_nome = strtolower(Inflector::slug($imagem_nome,'-'));  
@@ -330,6 +361,7 @@ class Pagina extends AppModel {
 	 * @param Array $imagem 
 	 * @param String $data 
 	*/   
+	/*
 	public function move_arquivos($imagem, $dir)  
 	{  
 		App::uses('File', 'Utility');  
@@ -338,5 +370,5 @@ class Pagina extends AppModel {
 		$arquivo->copy($dir.$imagem['name']);  
 		$arquivo->close();  
 	}  
-
+		*/
 }

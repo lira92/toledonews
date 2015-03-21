@@ -1,5 +1,5 @@
 <div class="patrocinadores form">
-<?php echo $this->Form->create('Patrocinadore'); ?>
+<?php echo $this->Form->create('Patrocinadore', array('type' => 'file')); ?>
 	<fieldset>
 		<legend><?php echo __('Add Patrocinadore'); ?></legend>
 	<?php

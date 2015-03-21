@@ -5,8 +5,12 @@
             $this->Tree->bootstrap = true;
             $this->Tree->block_start = '<ul class="menu nav navbar-nav">';
             $this->Tree->context = array(
-                                    '<a href="%s">%s</a>' => array(
+			
+									'<a href="%s " style="color:%s;  font-size: 18px;">%s</a>' 
+									
+									=> array(
                                         array('url' => 'id'),
+										array('color' => 'cor'),
                                         array('text' => 'titulo')
                                     )
             );

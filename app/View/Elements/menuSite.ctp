@@ -13,8 +13,7 @@ $htmlMenu .='<div class="menutopo">
 			//entra no primeiro nivel desconsiderando o local q é o primeiro 
 			//
 $htmlMenu .= '	<li class="menutopo">';
-$htmlMenu .=  	$this->Html->link( 
-					$valor['Menu']['titulo'],
+$htmlMenu .=  	$this->Html->link($valor['Menu']['titulo'],
 					array('controller' => 'menus', 'action' => 'ver', $valor['Menu']['id']),
 					array('class' => 'menutopo', 'style' => 'color:'.$valor['Menu']['cor'])
 				);

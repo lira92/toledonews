@@ -53,9 +53,9 @@
     
     <?php echo $this->element('site/menu'); ?>
     
-    <div class="menuservicos">
+    <!-- div class="menuservicos">
         <?php echo $this->element('site/menu_servico'); ?>
-    </div>    
+    </div -->    
 
     <div id="todo">
     	<div id="meio">
@@ -75,7 +75,7 @@
     
     <div id="rodape"><?php echo $this->element('site/footer'); ?></div>
     
-    <?PHP echo $this->element('sql_dump'); ?>
+    <?PHP //echo $this->element('sql_dump'); ?>
 
 </div>    
     

@@ -1,6 +1,7 @@
 <?php
 class MenuSiteHelper extends AppHelper {
 	var $helpers = array('Session', 'Html');
+	
 	public function isMenu() {
 		//$groupId = $this->Session->read('UserAuth.User.user_group_id');
 		App::import("Model", "Menu");  
@@ -84,15 +85,46 @@ $htmlMenu .= '		</ul>
 		*/
 	}
 	public function publicidadeDireita() {
-		//$menuId = $this->Session->read('UserAuth.User.user_group_id');
-		//$paginaId = $this->Session->read('UserAuth.User.user_group_id');
 		App::import("Model","Patrocinio");  
 		$model = new Patrocinio();  
-		$patrocinios = $model->find('all', array(
-			//'conditions' => array('src' => null),
-			//'fields' => array('src')
-			//'order' => array('lft ASC') // or array('id ASC')
-		));
+		
+		if(($this->Session->read('pagina_patrocinio_ID') == null) && ($this->Session->read('menu_patrocinio_ID') == null) ){
+		// se as duas sessoes estiverem null pq o usuario voltou para home ou local onde a publicidade será a principal
+			$patrocinios = $model->find('all', array(
+					'conditions' => array('Patrocinio.local' => 2),
+					 // esse local 2 é os da direita home
+					//'fields' => array('src')
+					'order' => 'rand()'
+				));
+			
+		}else{
+			if($this->Session->read('pagina_patrocinio_ID') != null ){
+			
+				$patrocinios = $model->find('all', array(
+					'conditions' => array(
+							'OR' => array(
+								'Patrocinio.pagina_id' => $this->Session->read('pagina_patrocinio_ID'),
+								'Patrocinio.menu_id' => $this->Session->read('menu_patrocinio_ID'),
+							),
+							'Patrocinio.local' => 1, // esse local 1 é os da direita
+						),
+					'order' => 'rand()'
+					//'fields' => array('src')
+					
+				));
+			
+			}else{
+				$patrocinios = $model->find('all', array(
+					'conditions' => array('Patrocinio.local' => 1, 'Patrocinio.menu_id' => $this->Session->read('menu_patrocinio_ID')),
+					 // esse local 1 é os da direita
+					//'fields' => array('src')
+					'order' => 'rand()'
+				));
+			}
+			
+		}
+		
+		
 		//$Menulist = $model->generateTreeList(null,null,null,"+");
 		return $patrocinios;
 	}

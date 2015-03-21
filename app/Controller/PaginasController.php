@@ -95,8 +95,12 @@ class PaginasController extends AppController {
     public function ver($id = null) {            
 		$Pagina = null;
 		if ($id<>null) {
+			
             if ($this->Pagina->exists($id)) {
-        	   $Pagina = $this->Pagina->findById($id);
+				
+				$this->Session->write('pagina_patrocinio_ID', $id);
+
+				$Pagina = $this->Pagina->findById($id);
         	}
     	}
         
